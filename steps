@@ -1,0 +1,1 @@
+python ./configure_qp_gnps_networking --env-script "source activate qtp-mass-spec" --server-cert "/home/qiita/qiita/qiita/qiita_core/support_files/server.crt"

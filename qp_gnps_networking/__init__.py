@@ -7,6 +7,7 @@
 # -----------------------------------------------------------------------------
 
 from qiita_client import QiitaPlugin, QiitaCommand
+from .gnps_networking import create_network
 
 # TODO: include relevant imports here
 # from .mycommand import my_command_function
@@ -19,8 +20,7 @@ plugin = QiitaPlugin('gnps-networking', '0.0.1',
 # You can define as many as needed
 
 # followed by the description of the API
-# req_params = {'Input artifact': ('artifact', ['Demultiplexed']),
-#               'Input integer': ('integer', 1000)}
+req_params = {'Input artifact': ('artifact', ['mzxml'])}
 # req_params is a dictionary defining the requried parameters of the command.
 # "required" means that the user is forced to provide a value in the Qiita GUI
 # The keys are the parameter names and the values are 2-tuples in which the
@@ -36,7 +36,7 @@ plugin = QiitaPlugin('gnps-networking', '0.0.1',
 # GUI and a default value will be used. The structure of the dictionary is the
 # same as in "req_params"
 #
-# outputs = {'output 1': 'BIOM'}
+outputs = {'output 1': 'BIOM'}
 # outputs is a dictionary defining the outputs of your command. The keys of the
 # dictionary are the output names and the value are the artifact type. At this
 # time, the command is forced to generate an artifact as an output. You can
@@ -53,9 +53,9 @@ plugin = QiitaPlugin('gnps-networking', '0.0.1',
 # dictionary is the parameter set name, while the values is a dictionary in
 # which keys are parameter names and values are the values for those parameters
 
-# cmd = QiitaCommand("My Command", "My command does this", my_command_function,
-#                    req_params, opt_params, outputs, dflt_param_set,
-#                    analysis_only=True)
+cmd = QiitaCommand("GNPS Networking", "Creates network and biom quantification output", create_network,
+                   req_params, None, outputs, None,
+                   analysis_only=True)
 # This call defines a QiitaCommand object so it can be registered to the plugin
 # The API of the QiitaCommand class is:
 # QiitaCommand(COMMAND_NAME, COMMAND_SHORT_DESCRIPTION,
