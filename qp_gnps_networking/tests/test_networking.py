@@ -15,14 +15,14 @@ from json import dumps
 
 from qiita_client.testing import PluginTestCase
 
-from qtp_mass_spec import generate_html_summary
+from qp_gnps_networking import create_network
 import time
 
 class SummaryTestsWith(PluginTestCase):
     def setUp(self):
         self.out_dir = mkdtemp()
         self._clean_up_files = [self.out_dir]
-        time.sleep(3)
+        time.sleep(5)
 
     def tearDown(self):
         for fp in self._clean_up_files:
@@ -50,7 +50,7 @@ class SummaryTestsWith(PluginTestCase):
 
         aid = self._create_artifact()
 
-        parameters = {'Input Artifact' : aid}
+        parameters = {'Input artifact' : aid}
         data = {'command': dumps(['gnps-networking', '0.0.1', 'GNPS Networking']),
                 'parameters': dumps(parameters), 'status': 'running'}
         job_id = self.qclient.post(
@@ -85,8 +85,10 @@ class SummaryTestsWith(PluginTestCase):
         #artifact = self._create_artifact()
         job_id, parameters = self._create_job("mzxml", {'plain_text': "support_files/112111_ES129_fr111109_jy_ft_ltq.mzXML"} )
 
-        #obs_success, obs_ainfo, obs_error = generate_html_summary(
-        #    self.qclient, job_id, parameters, self.out_dir)
+
+        #Actaully execute by running the right function
+        obs_success, obs_ainfo, obs_error = create_network(
+            self.qclient, job_id, parameters, self.out_dir)
 
         # asserting reply
         #self.assertTrue(obs_success)

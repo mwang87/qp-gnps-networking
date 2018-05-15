@@ -54,7 +54,7 @@ outputs = {'output 1': 'BIOM'}
 # which keys are parameter names and values are the values for those parameters
 
 cmd = QiitaCommand("GNPS Networking", "Creates network and biom quantification output", create_network,
-                   req_params, None, outputs, None,
+                   req_params, dict(), outputs, dict(),
                    analysis_only=True)
 # This call defines a QiitaCommand object so it can be registered to the plugin
 # The API of the QiitaCommand class is:
